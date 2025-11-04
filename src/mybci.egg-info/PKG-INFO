@@ -1,0 +1,163 @@
+Metadata-Version: 2.4
+Name: mybci
+Version: 0.1.0
+Summary: Modular OCR and document parsing system
+Author-email: Your Name <you@example.com>
+License: MIT
+Keywords: ocr,document,layout,nlp,ai
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pillow
+Requires-Dist: pytesseract
+Requires-Dist: opencv-python
+Requires-Dist: requests
+Requires-Dist: pydantic
+Requires-Dist: rich
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: ipython; extra == "dev"
+Provides-Extra: web
+Requires-Dist: fastapi; extra == "web"
+Requires-Dist: uvicorn; extra == "web"
+Requires-Dist: jinja2; extra == "web"
+Provides-Extra: ml
+Requires-Dist: torch; extra == "ml"
+Requires-Dist: transformers; extra == "ml"
+Requires-Dist: paddleocr; extra == "ml"
+Requires-Dist: layoutparser; extra == "ml"
+
+## 🧠 MyBCI 项目说明文档
+
+> 一个模块化的 OCR 与文档解析系统，融合版面分析、文字识别与 AI 语义理解。
+
+---
+
+### 📘 项目简介
+1. **MyBCI**（Modular BCI OCR System）是一个基于 Python 的结构化文档图像分析框架。
+    * 系统集成了 OCR、版面结构解析与深度学习模型推理。
+    * 可将 PDF、扫描件、截图等图像类文档转化为可检索、可分析的结构化数据。
+
+---
+
+### 🏗️ 项目目录结构
+1. **整体结构说明**
+    * 项目采用模块化设计，各功能子系统相互独立，便于维护与扩展。
+    * 顶层目录简洁清晰，适合科研实验与生产部署。
+1. **结构示例**
+    ```
+    project_root/
+    ├── config/                # 配置文件 (.json/.yaml)
+    ├── input/                 # 输入文件（PDF或图片）
+    ├── output/                # 输出与处理结果
+    ├── logs/                  # 日志文件
+    ├── src/
+    │   └── mybci/
+    │       ├── __init__.py
+    │       ├── core/          # 核心逻辑与流程控制
+    │       ├── ocr_processing/# OCR 模块
+    │       ├── ml_backend/    # 模型后端与微调接口
+    │       ├── webapp/        # Web/API 层（FastAPI）
+    │       └── utils/         # 通用工具与共享方法
+    ├── init_project_structure.py
+    └── pyproject.toml
+    ```
+
+---
+
+### ⚙️ 安装步骤
+1. **创建虚拟环境**
+    * Windows 系统
+        - ```bash
+          python -m venv .venv
+          .\.venv\Scripts\activate
+          ```
+    * Linux / macOS 系统
+        - ```bash
+          python -m venv .venv
+          source .venv/bin/activate
+          ```
+1. **安装依赖**
+    * ```bash
+      pip install -e .[dev,web,ml]
+      ```
+        - **基础依赖**：`numpy`、`pandas`、`pillow`、`pytesseract`、`opencv-python` 等。
+        - **开发依赖**：`pytest`、`black`、`flake8`、`mypy`
+        - **Web 依赖**：`fastapi`、`uvicorn`
+        - **机器学习依赖**：`torch`、`transformers`、`paddleocr`、`layoutparser`
+
+---
+
+### 🚀 快速开始
+1. **初始化项目目录**
+    * ```bash
+      python init_project_structure.py
+      ```
+1. **验证包导入**
+    * ```bash
+      python -m mybci
+      ```
+1. **启动 FastAPI 服务**
+    * ```bash
+      uvicorn mybci.webapp.main:app --reload
+      ```
+        - 默认访问地址：<http://127.0.0.1:8000>
+
+---
+
+### 🧠 示例流程
+1. 将扫描件或图片格式的 PDF 放入 `input/` 目录。
+1. 在 `config/config_ocr_default.json` 中配置参数。
+1. 运行 OCR 处理脚本：
+    * ```bash
+      python -m mybci.ocr_processing.run_pipeline
+      ```
+1. 查看输出结果：
+    * 在 `output/` 文件夹中查看识别文本与结构化结果。
+
+---
+
+### 🧰 开发与调试
+1. **代码格式检查**
+    * ```bash
+      black src/
+      flake8 src/
+      ```
+1. **类型检查**
+    * ```bash
+      mypy src/
+      ```
+1. **单元测试**
+    * ```bash
+      pytest
+      ```
+
+---
+
+### 📜 开源许可
+1. 本项目基于 **MIT License** 授权。
+    * 用户可自由使用、修改和分发项目代码。
+    * 适用于科研与商业用途。
+
+---
+
+### 👤 作者信息
+1. **作者：Your Name**
+    * 📧 邮箱：you@example.com
+    * 🌐 主页：[GitHub](https://github.com/yourusername)
+
+---
+
+### 🪄 未来规划
+1. 支持多语言 OCR 管线。
+    * 自动识别中文与英文版面。
+1. 集成版面感知模型（LayoutLMv3 / Donut）。
+    * 提升复杂文档结构解析能力。
+1. 增加可视化 Web 控制面板。
+    * 支持版面可视化与语义标注。
+1. 开发领域数据微调工具。
+    * 支持持续训练与模型自适应优化。
